@@ -73,7 +73,7 @@ def createandNav():
 
 def searchForDir(img):
     resize = Image.open(img)
-    dictDir = str(resize.size[0]/300)+"x"+str(resize.size[1]/300)
+    dictDir = str(resize.size[0]/300)+"x"+str(resize.size[1]/300) # Duplicate
     attempts = 4
     resizeWidth = 0
     resizeHeight = 0
@@ -89,27 +89,14 @@ def searchForDir(img):
           incorrectImage(img)
           return
         try:
-            (resizeWidth, resizeHeight) = sizes[dictDir]
-      
-
-            
-        except KeyError:
+            (resizeWidth, resizeHeight) = sizes[dictDir]            # This loop is likely the issue with
+        except KeyError:                                            # the sizing issue.  Creating image of wrong dpi
             incorrectImage(img)
             return
 
-       
-
         break
 
-
-
-
-
-    # width = int(resize.size[0])#/300)
-    # height = int(resize.size[1])#/300)
-    # print (width, height)
-
-    dirName = str(int(resize.size[0]/300))+ "x"+str(int(resize.size[1]/300))
+    dirName = str(int(resize.size[0]/300))+ "x"+str(int(resize.size[1]/300)) # Duplicate 
     if not os.path.exists(os.getcwd()+"/" + dirName):
         print("Found a new size.  Making a directory")
         os.makedirs(os.getcwd()+"/" + dirName)
