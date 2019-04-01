@@ -94,7 +94,7 @@ def searchForDir(img):
             incorrectImage(img)
             return
 
-        break
+        break # test comment
 
     dirName = str(int(resize.size[0]/300))+ "x"+str(int(resize.size[1]/300)) # Duplicate 
     if not os.path.exists(os.getcwd()+"/" + dirName):
