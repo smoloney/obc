@@ -40,7 +40,7 @@ def createandNav():
 
     numArray = open(ordernumberfile).read().split('\n')
     img = urllib.URLopener()
-    print "Making OBC Images Directory"
+    print ("Making OBC Images Directory")
     if not os.path.exists(path):
         os.makedirs(path)
 
@@ -66,7 +66,12 @@ def createandNav():
                 url = url[:4]+url[5:]
             filename = str(numArray[i]) + ".jpg"
            
-            img.retrieve(url, filename)
+            try:
+                img.retrieve(url, filename)
+            except:
+                print('Error in url:'+ url)
+                exit()
+
         searchForDir(filename)
     print ("Complete! Exiting.")
     exit() 
@@ -125,8 +130,11 @@ def resizeImage(img, width, height):
 
 
 def downloadFiles(url, filename, path):
-   
-    downloaded_file = requests.get(url)
+    try:
+        downloaded_file = requests.get(url)
+    except:
+        print("Error in url: %s", (url))
+        exit()
     destFile = open(os.getcwd()+'/'+filename, 'w+')
     destFile.write(downloaded_file.content)
    
